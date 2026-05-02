@@ -1,0 +1,4 @@
+# auto-generated cache files; let the workflow be the source of truth
+__pycache__/
+*.pyc
+.DS_Store

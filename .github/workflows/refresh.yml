@@ -1,0 +1,48 @@
+name: refresh
+
+# Refreshes plugins.json `version` fields from each plugin's metadata.yaml,
+# then recomputes plugins-md5.json. Commits if anything changed.
+on:
+  schedule:
+    - cron: "17 */6 * * *"  # every ~6 hours, off the :00 mark
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "plugins.json"
+      - "scripts/refresh.py"
+      - ".github/workflows/refresh.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh plugins.json + md5
+        run: python scripts/refresh.py
+
+      - name: Commit if changed
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "no changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add plugins.json plugins-md5.json
+          git commit -m "chore: refresh plugin versions"
+          git push
