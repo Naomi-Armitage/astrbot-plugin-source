@@ -12,7 +12,7 @@
       "geolocation",
       "bgp"
     ],
-    "version": "v0.2.0"
+    "version": "v0.2.1"
   },
   "astrbot_plugin_webchat_gateway": {
     "author": "Naomi-Armitage",
