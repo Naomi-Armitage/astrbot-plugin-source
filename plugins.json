@@ -1,7 +1,7 @@
 {
   "astrbot_plugin_netkit": {
     "author": "Naomi-Armitage",
-    "desc": "AstrBot 网络工具集插件 (NetKit)：/ip 查询 IPv4/IPv6/域名归属地，/asn 查询 ASN（接受 AS号/IP/域名/URL，自动反查 ASN 信息）。后续将扩展更多网络诊断与查询命令。",
+    "desc": "AstrBot 网络工具集插件 (NetKit)：/ip 查询 IP/域名/URL 归属地（多 IP 自动展开），/asn 查询 ASN（接受 AS号/IP/域名/URL，自动反查 ASN 信息）。后续将扩展更多网络诊断与查询命令。",
     "display_name": "网络工具集 (NetKit)",
     "repo": "https://github.com/Naomi-Armitage/astrbot_plugin_netkit",
     "social_link": "https://github.com/Naomi-Armitage",
@@ -12,7 +12,7 @@
       "geolocation",
       "bgp"
     ],
-    "version": "v0.2.2"
+    "version": "v0.2.3"
   },
   "astrbot_plugin_webchat_gateway": {
     "author": "Naomi-Armitage",
